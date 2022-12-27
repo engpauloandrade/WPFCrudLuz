@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace WpfProjetoLuz
                 if (name != value)
                 {
                     name = value;
-                    RaisePropertyChanged("Name");
+                    Notificar("Name");
                 }
             }
         }
@@ -47,7 +48,7 @@ namespace WpfProjetoLuz
                 if (email != value)
                 {
                     email = value;
-                    RaisePropertyChanged("Email");
+                    Notificar("Email");
                 }
             }
 
@@ -62,7 +63,7 @@ namespace WpfProjetoLuz
                 if (password != value)
                 {
                     password = value;
-                    RaisePropertyChanged("Password");
+                    Notificar("Password");
                 }
             }
         }
@@ -75,7 +76,7 @@ namespace WpfProjetoLuz
 
         //-- implementação da interface INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string prop)
+        private void Notificar([CallerMemberName]string prop = null)
         {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
